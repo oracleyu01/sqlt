@@ -126,4 +126,4 @@
 Offline 수업을 수강하시기 어려우시다면 온라인 강의를 추천합니다. 
 
 - **초보자도 쉽게 배우는 SQL 200제**: [링크](https://inf.run/R9Te3)
-- **SQL 자동화 수업**: [링크](https://www.inflearn.com/course/2024-%EC%8B%A4%EB%AC%B4-pl-sql?inst=609a681b&utm_source=instructor&utm_medium=referral&utm_campaign=inflearn_%ED%8A%B8%EB%9E%98%ED%94%BD_promotion-link)
+- **SQL 자동화 수업**: [링크](https://inf.run/AZdW6)
