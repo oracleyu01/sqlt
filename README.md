@@ -2,6 +2,13 @@
 
 ## 🚀 시작하는 법
 
+<img src="https://github.com/oracleyu01/sqlt/blob/main/sqltuning.png" width="500" height="500">
+
+안녕하세요, 여러분! 🌟  
+
+SQL 튜닝을 배우고 싶어 하시는 분들을 위해 SQL 튜닝 수업을 준비 하였습니다.  
+
+
 ## 🔍 당신의 쿼리가 느린 진짜 이유
 
 데이터베이스가 느리다고 무조건 서버 탓을 하시나요?    
