@@ -2,7 +2,7 @@
 
 ## 🚀 시작하는 법
 
-<img src="https://github.com/oracleyu01/sqlt/blob/main/sqltuning.png" width="600" height="500">
+<img src="https://github.com/oracleyu01/sqlt/blob/main/sqltuning2.png" width="600" height="500">
 
 안녕하세요, 여러분! 🌟  
 
