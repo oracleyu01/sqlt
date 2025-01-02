@@ -2,13 +2,19 @@
 
 📝 이론 설명
 
-INDEX SKIP SCAN은 결합 컬럼 인덱스를 더 효율적으로 활용할 수 있게 하는 고급 튜닝 기법입니다. 
-일반적으로 결합 컬럼 인덱스는 첫 번째 컬럼이 WHERE 절에 있어야만 사용할 수 있지만, INDEX SKIP SCAN을 사용하면 이 제약을 우회할 수 있습니다.
+INDEX SKIP SCAN은 결합 컬럼 인덱스를 더 효율적으로 활용할 수 있게 하는 
+고급 튜닝 기법입니다. 
+
+일반적으로 결합 컬럼 인덱스는 결합 컬럼 인덱스의 첫 번째 컬럼이 
+WHERE 절에 있어야만 사용할 수 있지만, 
+INDEX SKIP SCAN을 사용하면 이 제약을 우회할 수 있습니다.
+
+그림 설명
 
 ⚡ INDEX SKIP SCAN의 작동 원리
 
 ・ 결합 인덱스의 첫 번째 컬럼을 건너뛰면서 검색을 수행합니다
-・ 첫 번째 컬럼의 고유 값이 적을수록 더 효과적입니다
+・ 결합 인덱스의 첫 번째 컬럼의 고유 값이 적을수록 더 효과적입니다
 ・ FULL TABLE SCAN을 피하고 인덱스를 활용할 수 있게 해줍니다
 
 📌 핵심 포인트
@@ -47,6 +53,7 @@ where job = 'MANAGER';
 ➡️ 테이블 생성:
 
 drop table mcustsum purge;
+
 create table mcustsum
 as
 select rownum custno
@@ -61,9 +68,11 @@ connect by level <= 1200000;
 create index m_salemm_salegb on mcustsum(salemm,salegb);
 
 ✨ 튜닝 전:
+
 select count(*)
 from mcustsum t
 where salegb = 'A';
+
 select * from table(dbms_xplan.display_cursor(null, null, 'ALLSTATS LAST'));
 
 ⚡ 문제점 분석:
@@ -73,28 +82,39 @@ select * from table(dbms_xplan.display_cursor(null, null, 'ALLSTATS LAST'));
 ・ 부분범위 처리가 아닌 전체범위 처리가 발생했습니다
 
 ✨ 튜닝 후:
-select /*+ index_ss(t m_salemm_salegb) / count()
+
+select /*+ index_ss(t m_salemm_salegb) */ count(*)
 from mcustsum t
 where salegb = 'A';
+
 select * from table(dbms_xplan.display_cursor(null, null, 'ALLSTATS LAST'));
 
 📊 성능 개선 결과
 
 ・ 버퍼 읽기가 3,367개에서 302개로 크게 감소했습니다
 ・ INDEX SKIP SCAN을 통해 효율적인 인덱스 검색이 가능해졌습니다
-・ 전체범위 처리에서 부분범위 처리로 개선되었습니다🤔 문제1: emp와 dept 테이블 튜닝
+・ 전체범위 처리에서 부분범위 처리로 개선되었습니다
 
+🤔 문제1: 다음과 같이 결합 컬럼 인덱스를 생성하고 튜닝전 SQL을 튜닝후로 개선하시오 !
+
+@demo
 create index emp_job_sal on emp(job, sal);
 
+튜닝전: 
 select ename, job, sal
 from emp
 where sal = 1250;
 
-🤔 문제1: 직업 종류의 갯수를 확인하세요
+------------------------------------------------------------------------------------
+| Id  | Operation         | Name | Starts | E-Rows | A-Rows |   A-Time   | Buffers |
+------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |      1 |        |      2 |00:00:00.01 |       7 |
+|*  1 |  TABLE ACCESS FULL| EMP  |      1 |      2 |      2 |00:00:00.01 |       7 |
+------------------------------------------------------------------------------------
+
+튜닝후: 
 
 
-
-🤔 문제2: 부서 번호 종류의 갯수를 확인하세요
 
 
 
@@ -110,3 +130,6 @@ where sal = 1250;
 ・ 첫 번째 컬럼의 Distinct 값이 적을 때 특히 효과적입니다
 ・ 버퍼 사용량 감소를 통해 성능 향상을 확인할 수 있습니다
 ・ SQL 전문가 시험에서도 중요한 개념으로 다뤄집니다
+
+
+
