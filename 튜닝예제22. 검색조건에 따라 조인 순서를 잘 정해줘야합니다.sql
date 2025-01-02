@@ -54,16 +54,16 @@ and d.loc = 'CHICAGO';
 
 @demo
 
-select count() from sh.sales;
-select count() from sh.times;
+select count() from sales;
+select count() from times;
 
 create table sales200 as
 select *
-from sh.sales;
+from sales;
 
 create table times200 as
 select *
-from sh.times;
+from times;
 
 🤔 문제2: SQL을 적절한 조인 순서 힌트로 튜닝하시오.
 
