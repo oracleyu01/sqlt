@@ -1,15 +1,19 @@
+
 🎯 튜닝예제24. 3개 이상의 테이블을 NESTED LOOP 조인으로 조인할 때 힌트 사용법
 
 📝 이론 설명
 
-3개 이상의 테이블을 조인할 때, 조인의 순서와 방법은 성능에 큰 영향을 미칩니다. 특히 NESTED LOOP 조인은 조인되는 데이터의 양이 작고 연결고리 컬럼에 인덱스가 있을 경우 효율적입니다. 적절한 힌트를 사용해 조인 순서와 방법을 명시하면 성능을 크게 향상시킬 수 있습니다.
+3개 이상의 테이블을 조인할 때, 조인의 순서와 방법은 성능에 큰 영향을 미칩니다. 
+특히 NESTED LOOP 조인은 조인되는 데이터의 양이 작고 연결고리 컬럼에 인덱스가 
+있을 경우 효율적입니다. 적절한 힌트를 사용해 조인 순서와 방법을 명시하면 성능을 
+크게 향상시킬 수 있습니다.
 
 📌 조인 방법 3가지
 
 ・ NESTED LOOP JOIN: use_nl 힌트를 사용하며, 조인되는 데이터의 양이 작고 연결고리 컬럼에 인덱스가 있을 때 유리합니다.
 
 ・ HASH JOIN: use_hash 힌트를 사용하며, 데이터 양이 많고 연결고리 컬럼에 인덱스가 없거나 효과적이지 않을 때 적합합니다.
-                   인덱스 효과가 어려운 경우: 너무 많은 데이터를 검색할 때.
+              인덱스 효과가 어려운 경우: 너무 많은 데이터를 검색할 때.
 
 ・ SORT MERGE JOIN: use_merge 힌트를 사용하며, 데이터 양이 많고 정렬된 결과가 필요하거나, 연결고리 컬럼에 인덱스 효과가 없을 때 유리합니다.
 
@@ -26,6 +30,7 @@ select e.ename, e.sal, d.loc, s.grade
 from emp e, dept d, salgrade s
 where e.deptno = d.deptno and e.sal between s.losal and s.hisal;
 
+
 💻 실습2: 조인 순서 및 방법 조정
 
 @demo
@@ -39,11 +44,33 @@ where e.deptno = d.deptno and e.sal between s.losal and s.hisal;
 
 select * from table(dbms_xplan.display_cursor(null, null, 'ALLSTATS LAST'));
 
-🤔 문제1: 조인 순서 및 방법을 SALGRADE → EMP → DEPT로 변경하시오
+------------------------------------------------------------------------------------------
+| Id  | Operation           | Name     | Starts | E-Rows | A-Rows |   A-Time   | Buffers |
+------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |          |      1 |        |     14 |00:00:00.01 |     119 |
+|   1 |  NESTED LOOPS       |          |      1 |      1 |     14 |00:00:00.01 |     119 |
+|   2 |   NESTED LOOPS      |          |      1 |     14 |     14 |00:00:00.01 |      35 |
+|   3 |    TABLE ACCESS FULL| DEPT     |      1 |      4 |      4 |00:00:00.01 |       7 |
+|*  4 |    TABLE ACCESS FULL| EMP      |      4 |      4 |     14 |00:00:00.01 |      28 |
+|*  5 |   TABLE ACCESS FULL | SALGRADE |     14 |      1 |     14 |00:00:00.01 |      84 |
+------------------------------------------------------------------------------------------
+
+🤔 문제1: 조인 순서를 SALGRADE → EMP → DEPT로 변경하시오
+
+ 조인 방법은 nested  loop 조인으로 고정하세요 !
 
 @demo
 
-
+------------------------------------------------------------------------------------------
+| Id  | Operation           | Name     | Starts | E-Rows | A-Rows |   A-Time   | Buffers |
+------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |          |      1 |        |     14 |00:00:00.01 |     139 |
+|   1 |  NESTED LOOPS       |          |      1 |      1 |     14 |00:00:00.01 |     139 |
+|   2 |   NESTED LOOPS      |          |      1 |      1 |     14 |00:00:00.01 |      41 |
+|   3 |    TABLE ACCESS FULL| SALGRADE |      1 |      5 |      5 |00:00:00.01 |       6 |
+|*  4 |    TABLE ACCESS FULL| EMP      |      5 |      1 |     14 |00:00:00.01 |      35 |
+|*  5 |   TABLE ACCESS FULL | DEPT     |     14 |      1 |     14 |00:00:00.01 |      98 |
+------------------------------------------------------------------------------------------
 
 💻 실습3: 조인의 성능을 높이기 위해 연결고리 컬럼에 인덱스 생성
 
@@ -57,11 +84,34 @@ from emp e, dept d, salgrade s
 where e.deptno = d.deptno and e.sal between s.losal and s.hisal;
 
 select * from table(dbms_xplan.display_cursor(null, null, 'ALLSTATS LAST'));
-
+------------------------------------------------------------------------------------------
+| Id  | Operation           | Name     | Starts | E-Rows | A-Rows |   A-Time   | Buffers |
+------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |          |      1 |        |     14 |00:00:00.01 |     139 |
+|   1 |  NESTED LOOPS       |          |      1 |      1 |     14 |00:00:00.01 |     139 |
+|   2 |   NESTED LOOPS      |          |      1 |      1 |     14 |00:00:00.01 |      41 |
+|   3 |    TABLE ACCESS FULL| SALGRADE |      1 |      5 |      5 |00:00:00.01 |       6 |
+|*  4 |    TABLE ACCESS FULL| EMP      |      5 |      1 |     14 |00:00:00.01 |      35 |
+|*  5 |   TABLE ACCESS FULL | DEPT     |     14 |      1 |     14 |00:00:00.01 |      98 |
+------------------------------------------------------------------------------------------
+ 
 📌 결과:
 
 SALGRADE → EMP(NESTED LOOP) → DEPT(NESTED LOOP).
 연결고리 컬럼에 인덱스를 추가한 후 성능 향상.
+
+------------------------------------------------------------------------------------------------------
+| Id  | Operation                    | Name        | Starts | E-Rows | A-Rows |   A-Time   | Buffers |
+------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT             |             |      1 |        |     14 |00:00:00.01 |      45 |
+|   1 |  NESTED LOOPS                |             |      1 |      1 |     14 |00:00:00.01 |      45 |
+|   2 |   NESTED LOOPS               |             |      1 |      1 |     14 |00:00:00.01 |      44 |
+|   3 |    NESTED LOOPS              |             |      1 |      1 |     14 |00:00:00.01 |      41 |
+|   4 |     TABLE ACCESS FULL        | SALGRADE    |      1 |      5 |      5 |00:00:00.01 |       6 |
+|*  5 |     TABLE ACCESS FULL        | EMP         |      5 |      1 |     14 |00:00:00.01 |      35 |
+|*  6 |    INDEX RANGE SCAN          | DEPT_DEPTNO |     14 |      1 |     14 |00:00:00.01 |       3 |
+|   7 |   TABLE ACCESS BY INDEX ROWID| DEPT        |     14 |      1 |     14 |00:00:00.01 |       1 |
+------------------------------------------------------------------------------------------------------
 
 🤔 문제2: BONUS 테이블 생성하고 emp와 dept 와 bonus 를 조인해서 이름과 부서위치와 comm2 를 출력하세요
 
@@ -73,12 +123,22 @@ create table bonus as
 select empno, sal * 1.2 as comm2
 from emp;
 
-답:
+   dept ----- emp  ---- bonus 
+
+답: select e.ename, d.loc, b.comm2   
+       from   emp e,  dept  d,  bonus  b
+       where e.deptno = d.deptno  
+       and  e.empno = b.empno; 
 
 
 🤔 문제3: 위의 결과에서 SCOTT의 데이터만 출력하세요
 
 답:
+select e.ename, d.loc, b.comm2   
+       from   emp e,  dept  d,  bonus  b
+       where e.deptno = d.deptno  
+       and  e.empno = b.empno
+       and  e.ename='SCOTT';
 
 
 🤔 문제4: 아래의 SQL의 EMP → DEPT → BONUS로 조인 순서 및 방법 설정하세요. 
@@ -90,16 +150,11 @@ from emp;
 
 select /*+ 이 자리에 힌트를 쓰세요 */  e.ename, d.loc, b.comm2
 from emp e, dept d, bonus b
-where e.deptno = d.deptno and e.empno = b.empno;
+where e.deptno = d.deptno and e.empno = b.empno and  e.ename='SCOTT';
 
 🎓 결론
 
 ・ 3개 이상의 테이블을 조인할 때는 조인 순서와 방법을 힌트로 명시하여 성능을 최적화할 수 있습니다.
 ・ 연결고리 컬럼에 인덱스를 생성하면 NESTED LOOP 조인의 성능이 크게 향상됩니다.
 ・ 조인 순서를 적절히 설정하면 불필요한 데이터 접근을 줄이고 효율적인 실행 계획을 수립할 수 있습니다.
-
-
-
-
-
 
