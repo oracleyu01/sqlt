@@ -39,7 +39,7 @@ SQL 튜닝을 배우고 싶어 하시는 분들을 위해 SQL 튜닝 수업을 �
 
 단순한 이론이 아닌, 실무에서 바로 적용할 수 있는 실전 SQL 튜닝의 모든 것을 알려드립니다.
 
-## 수업 자료( ☀️ 2025년  1월 1일 updated)
+## 수업 자료( ☀️ 2025년  1월 2일 updated)
 
 ### 실행계획 이해하기
 - 튜닝예제1. select 문의 실행과정 3단계를 먼저 아셔야해요 | 💬[설명그림](링크) | 📄[관련코드](https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C1.%20select%20%EB%AC%B8%EC%9D%98%20%EC%8B%A4%ED%96%89%EA%B3%BC%EC%A0%95%203%EB%8B%A8%EA%B3%84%EB%A5%BC%20%EB%A8%BC%EC%A0%80%20%EC%95%84%EC%85%94%EC%95%BC%ED%95%B4%EC%9A%94.sql)
