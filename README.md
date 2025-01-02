@@ -69,7 +69,7 @@ SQL 튜닝을 배우고 싶어 하시는 분들을 위해 SQL 튜닝 수업을 �
 - 튜닝예제20. index unique scan을 사용하세요 | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C20.%20index%20unique%20scan%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%98%EC%84%B8%EC%9A%94.sql)
 
 ### 조인 튜닝의 기초
-- 조인 튜닝 수업에 사용할 대용량 테이블 생성 스크립트  | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%EB%8C%80%EC%9A%A9%EB%9F%89%20%EC%8B%A4%EC%8A%B5%20%ED%85%8C%EC%9D%B4%EB%B8%94%20%EC%83%9D%EC%84%B1.sql)  
+- 📌 [환경구성] 조인 튜닝 수업에 사용할 대용량 테이블 생성 스크립트  | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%EB%8C%80%EC%9A%A9%EB%9F%89%20%EC%8B%A4%EC%8A%B5%20%ED%85%8C%EC%9D%B4%EB%B8%94%20%EC%83%9D%EC%84%B1.sql)  
 - 튜닝예제21. 조인문장을 튜닝할 때 조인 순서 튜닝이 중요합니다 | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C21.%20%EC%A1%B0%EC%9D%B8%EB%AC%B8%EC%9E%A5%EC%9D%84%20%ED%8A%9C%EB%8B%9D%ED%95%A0%20%EB%95%8C%20%EC%A1%B0%EC%9D%B8%20%EC%88%9C%EC%84%9C%20%ED%8A%9C%EB%8B%9D%EC%9D%B4%20%EC%A4%91%EC%9A%94%ED%95%A9%EB%8B%88%EB%8B%A4.sql)
 - 튜닝예제22. 검색조건에 따라 조인 순서를 잘 정해줘야합니다 | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C22.%20%EA%B2%80%EC%83%89%EC%A1%B0%EA%B1%B4%EC%97%90%20%EB%94%B0%EB%9D%BC%20%EC%A1%B0%EC%9D%B8%20%EC%88%9C%EC%84%9C%EB%A5%BC%20%EC%9E%98%20%EC%A0%95%ED%95%B4%EC%A4%98%EC%95%BC%ED%95%A9%EB%8B%88%EB%8B%A4.sql)
 - 튜닝예제23. 조인되는 데이터의 양이 작을 때는 nested loop조인으로 조인하세요 | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C23.%20%EC%A1%B0%EC%9D%B8%EB%90%98%EB%8A%94%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98%20%EC%96%91%EC%9D%B4%20%EC%9E%91%EC%9D%84%20%EB%95%8C%EB%8A%94%20nested%20loop%EC%A1%B0%EC%9D%B8%EC%9C%BC%EB%A1%9C%20%EC%A1%B0%EC%9D%B8%ED%95%98%EC%84%B8%EC%9A%94.sql)
