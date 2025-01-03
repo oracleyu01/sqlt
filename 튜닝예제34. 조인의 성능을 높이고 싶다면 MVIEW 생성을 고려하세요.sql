@@ -27,13 +27,14 @@ select * from emp_dept2;
 
 💻 실습예제2: MVIEW 생성
 
-create materialized view emp_dept3 as
-select d.loc, sum(e.sal) as sumsal
-from emp e, dept d
-where e.deptno = d.deptno
-group by d.loc;
 
-select * from emp_dept3;
+답:
+
+  
+
+
+
+  
 
 📌 설명
 
@@ -41,16 +42,16 @@ select * from emp_dept3;
 ・ 데이터 저장을 통해 매번 조인 작업을 반복하지 않음.
 
 
-💻 실습예제3: DALLAS 사원 데이터를 위한 MVIEW 생성
+💻 실습예제3: 아래의 쿼리가 너무 느립니다. 앞으로 빨리 조회하기 위해서 MVIEW 생성하세요
 
-create materialized view emp_dept_salgrade as
 select e.ename, e.sal, d.loc, s.grade
 from emp e, dept d, salgrade s
 where e.deptno = d.deptno
 and e.sal between s.losal and s.hisal
 and d.loc = 'DALLAS';
 
-select * from emp_dept_salgrade;
+
+
 
 📌 설명
 
@@ -61,7 +62,7 @@ select * from emp_dept_salgrade;
 
 drop view emp_dept_salgrade2;
 
-select /*+ rewrite */ e.ename, e.sal, d.loc, s.grade
+select /*+     ?     */ e.ename, e.sal, d.loc, s.grade
 from emp e, dept d, salgrade s
 where e.deptno = d.deptno
 and e.sal between s.losal and s.hisal
