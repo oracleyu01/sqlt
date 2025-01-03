@@ -25,7 +25,7 @@ SORT MERGE JOIN은 조인 전에 데이터를 정렬해야 하므로, 테이블 
 
 @demo
 
-select /*+ leading(d e) use_merge(e) */ e.ename, e.loc, e.deptno
+select /*+       ?           */ e.ename, e.loc, e.deptno
 from emp e, dept d
 where e.deptno = d.deptno;
 
