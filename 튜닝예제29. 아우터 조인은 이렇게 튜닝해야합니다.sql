@@ -28,13 +28,12 @@
   3. SORT MERGE JOIN
 
 
-💻 실습1: 이름과 부서 위치를 조인하여 BOSTON도 출력
+💻 실습1: 이름과 부서 위치를 출력하는데 BOSTON 도 출력되게하세요!
 
 @demo
 
-select e.ename, d.loc
-from emp e, dept d
-where e.deptno (+) = d.deptno;
+😃 여기에 SQL을 작성하세요.
+    
 
 📌 설명
 
@@ -86,7 +85,7 @@ and t.week_ending_day_id (+) = 1581
 group by t.calendar_year;
 
 ✨ 튜닝후:
-select /*+ 이 자리에 적절한 힌트를 쓰세요  */ t.calendar_year, sum(s.amount_sold)
+select /*+ 😃 이 자리에 적절한 힌트를 쓰세요  */ t.calendar_year, sum(s.amount_sold)
 from sales200 s, times200 t
 where s.time_id = t.time_id (+)
 and t.week_ending_day_id (+) = 1581
