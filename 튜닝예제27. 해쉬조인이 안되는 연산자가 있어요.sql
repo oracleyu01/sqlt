@@ -19,7 +19,7 @@ HASH 조인은 조인 연결고리 조건이 반드시 = 조건일 때만 사용
 
 @demo
 
-select /*+ leading(s e) use_hash(e) */ e.ename, e.sal, s.grade
+select /*+       ?        */ e.ename, e.sal, s.grade
 from emp e, salgrade s
 where e.sal between s.losal and s.hisal;
 
