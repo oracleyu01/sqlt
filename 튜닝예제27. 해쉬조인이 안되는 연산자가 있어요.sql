@@ -19,9 +19,10 @@ HASH 조인은 조인 연결고리 조건이 반드시 = 조건일 때만 사용
 
 @demo
 
-select /*+       ?        */ e.ename, e.sal, s.grade
-from emp e, salgrade s
-where e.sal between s.losal and s.hisal;
+
+
+
+  
 
 📌 설명
 
@@ -31,10 +32,11 @@ HASH 조인이 불가능: 연결고리가 BETWEEN ... AND 조건으로 인해 HA
 
 @demo
 
-select /*+         ?           */ e.ename, e.sal, s.grade
-from emp e, salgrade s
-where e.sal between s.losal and s.hisal;
 
+
+
+
+  
 📌 설명
 
 ・  SORT MERGE JOIN을 사용하여 범위 조건 조인 수행.
