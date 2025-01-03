@@ -30,7 +30,7 @@
 
 @demo
 
-select /*+ leading(e,d,s) use_hash(d) use_nl(s) */ e.ename, d.loc, s.grade
+select /*+                              */ e.ename, d.loc, s.grade
 from emp e, dept d, salgrade s
 where e.deptno = d.deptno
 and e.sal between s.losal and s.hisal;
