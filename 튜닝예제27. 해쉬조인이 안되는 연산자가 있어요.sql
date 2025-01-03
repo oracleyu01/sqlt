@@ -15,7 +15,7 @@ HASH 조인은 조인 연결고리 조건이 반드시 = 조건일 때만 사용
 ・ SORT MERGE JOIN: 범위 조건이 있는 경우 효율적으로 사용 가능.
 ・ NESTED LOOP JOIN: 데이터 양이 적을 때 적합하지만, 대량 데이터에서는 성능 저하 가능.
 
-💻 실습1: EMP와 SALGRADE를 조인하여 이름, 월급, 급여등급 출력 (HASH 조인)
+💻 실습1: EMP와 SALGRADE를 조인하여 이름, 월급, 급여등급 출력하는데 조인방법이 해쉬 조인되게 힌트를 주시오
 
 @demo
 
@@ -31,7 +31,7 @@ HASH 조인이 불가능: 연결고리가 BETWEEN ... AND 조건으로 인해 HA
 
 @demo
 
-select /*+ leading(s e) use_merge(e) */ e.ename, e.sal, s.grade
+select /*+         ?           */ e.ename, e.sal, s.grade
 from emp e, salgrade s
 where e.sal between s.losal and s.hisal;
 
