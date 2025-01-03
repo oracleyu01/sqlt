@@ -26,9 +26,8 @@ where v.sal between s.losal and s.hisal;
 
 💻 실습예제2: 뷰 해체 방지
 
-select /*+ no_merge(v) */ v.ename, v.sal, v.loc, s.grade
-from emp_dept v, salgrade s
-where v.sal between s.losal and s.hisal;
+답:  
+  
 
 📌 설명
 
@@ -41,9 +40,11 @@ where v.sal between s.losal and s.hisal;
 조인 순서: EMP_DEPT 뷰 → SALGRADE
 조인 방법: NESTED LOOP 조인
 
-select /*+ no_merge(v) leading(v,s) use_nl(s) */ v.ename, v.sal, v.loc, s.grade
-from emp_dept v, salgrade s
-where v.sal between s.losal and s.hisal;
+답:
+
+
+
+  
 
 📌 설명
 
