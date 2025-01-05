@@ -26,9 +26,6 @@
 ✨ 튜닝전:
 
 
-- 💻  다음 수업 바로가기 
-
--- https://github.com/oracleyu01/sqlt/blob/main/튜닝예제42. 데이터 분석함수를 이용해서 SQL을 재작성할 줄 알아야해요.sql
 
   
 
@@ -45,6 +42,8 @@ ROLLUP 함수는 GROUP BY 절에서 계층적 합계를 생성할 때 사용되�
 이는 기존 SQL 문장을 간단하게 재작성할 수 있어 성능과 가독성을 향상시킵니다.
 
 
+- 💻  다음 수업 바로가기 
 
+-- https://github.com/oracleyu01/sqlt/blob/main/튜닝예제42. 데이터 분석함수를 이용해서 SQL을 재작성할 줄 알아야해요.sql
 
 
