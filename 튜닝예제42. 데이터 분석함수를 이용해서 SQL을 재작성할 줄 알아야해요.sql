@@ -71,6 +71,10 @@ GROUPING SETS는 GROUP BY 절에서 여러 그룹화 조합을 생성할 수 있
 
 
 
+- 💻  다음 수업 바로가기 
+
+-- https://github.com/oracleyu01/sqlt/blob/main/튜닝예제43. 데이터 분석함수를 이용해서 SQL을 재작성할 줄 알아야해요. 세번째.sql
+
 
 
 
