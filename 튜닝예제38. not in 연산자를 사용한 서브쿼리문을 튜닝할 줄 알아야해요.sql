@@ -55,6 +55,7 @@ NOT IN 연산자를 사용한 서브쿼리는 ANTI JOIN으로 변환될 수 있�
 ・ merge_aj: SORT MERGE ANTI JOIN 수행
 
 - 💻  다음 수업 바로가기 
+
 -- https://github.com/oracleyu01/sqlt/blob/main/튜닝예제39. in 연산자를  exists 로 변경해서 튜닝할 줄 알아야해요.sql 
 
 
