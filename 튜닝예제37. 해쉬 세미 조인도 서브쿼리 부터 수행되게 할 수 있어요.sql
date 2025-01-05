@@ -53,6 +53,6 @@ swap_join_inputs(customers200)를 사용하여 CUSTOMERS200을 해시 테이블�
 ・ no_swap_join_inputs: 메인 쿼리 테이블을 해시 테이블로 설정.
 
 
- <a href="https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C38.%20not%20in%20%EC%97%B0%EC%82%B0%EC%9E%90%EB%A5%BC%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EB%AC%B8%EC%9D%84%20%ED%8A%9C%EB%8B%9D%ED%95%A0%20%EC%A4%84%20%EC%95%8C%EC%95%84%EC%95%BC%ED%95%B4%EC%9A%94.sql" target="_blank">📘 다음 수업 바로가기</a>
+ [다음 수업 바로가기](https://github.com/oracleyu01/sqlt/blob/main/튜닝예제38. not in 연산자를 사용한 서브쿼리문을 튜닝할 줄 알아야해요.sql)
 
 
