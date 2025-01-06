@@ -105,6 +105,8 @@ SQL 튜닝을 배우고 싶어 하시는 분들을 위해 SQL 튜닝 수업을 �
 - 튜닝예제45. 데이터 분석함수를 이용해서 SQL을 재작성할 줄 알아야해요(다섯번째) | 📄[관련 코드](https://github.com/oracleyu01/sqlt/blob/main/%ED%8A%9C%EB%8B%9D%EC%98%88%EC%A0%9C45.%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%ED%95%A8%EC%88%98%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C%20SQL%EC%9D%84%20%EC%9E%AC%EC%9E%91%EC%84%B1%ED%95%A0%20%EC%A4%84%20%EC%95%8C%EC%95%84%EC%95%BC%ED%95%B4%EC%9A%94.%20%EB%8B%A4%EC%84%AF%EB%B2%88%EC%A7%B8.sql)  
 
 
+⭐ 📄[위의 예제들에 대한 답 노](https://1drv.ms/u/c/e5068f15d1f10fb8/EbgP8dEVjwYggOUpSAAAAAABUFhF9z5Azjti-f_JmDeXEA?e=BKe2wz)
+
 ## 강의 안내
 
 위의 수업 내용은 강남 아이티윌 교육센터에서 수강하실 수 있습니다.
